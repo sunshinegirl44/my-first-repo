@@ -1,0 +1,58 @@
+import random
+import tkinter as tk
+
+
+def scissors_paper_rock():
+    user_choice = input("Enter your choice (scissors, paper, rock): ").lower()
+    computer_choice = random.choice(['scissors', 'paper', 'rock'])
+    print(f"Computer's choice: {computer_choice}")
+    if computer_choice == user_choice:
+        result = "It's a tie!"
+    elif (user_choice == 'scissors' and computer_choice == 'paper') or (user_choice == 'paper' and computer_choice == 'rock') or (user_choice == 'rock' and computer_choice == 'scissors'):
+        result = "You win!"
+    else:
+        result = "You lose!"
+    return result
+input('wanna play scissors, paper, rock? (y/n)')
+user_input = input()
+if user_input == 'y':
+    print('Great! Let\'s play!')
+    scissors_paper_rock()
+    play_again = input('Play again? (y/n)')
+    while play_again == 'y':        
+        scissors_paper_rock()
+        print(result)
+        play_again = input('Play again? (y/n)')
+        
+else:
+    print('Boo!')
+input('wanna play scissors, paper, rock? (y/n)')
+root = tk.Tk()
+root.title("Scissors, Paper, Rock Game")
+root.geometry("400x300")
+root.configure(bg="lightblue")
+
+header = tk.Label(root, text="Scissors, Paper, Rock Game", font=("Helvetica", 16), bg="lightblue")
+header.pack(pady=20)    
+
+button_frame = tk.Frame(root, bg="lightblue")
+button_frame.pack(pady=10)
+
+rock_button = tk.Button(button_frame, text="Rock", command=lambda: scissors_paper_rock("rock"))
+rock_button.grid(row=0, column=0, padx=10)
+paper_button = tk.Button(button_frame, text="Paper", command=lambda: scissors_paper_rock("paper"))
+paper_button.grid(row=0, column=1, padx=10)     
+scissors_button = tk.Button(button_frame, text="Scissors", command=lambda: scissors_paper_rock("scissors"))
+scissors_button.grid(row=0, column=2, padx=10)
+
+user_choice_label = tk.Label(root, text="Your choice: ", font=("Helvetica", 12), bg="lightblue")
+user_choice_label.pack(pady=10)
+computer_choice_label = tk.Label(root, text="Computer's choice: ", font=("Helvetica", 12), bg="lightblue")
+computer_choice_label.pack(pady=10)
+result_label = tk.Label(root, text="", font=("Helvetica", 14), bg="lightblue")
+result_label.pack(pady=20)
+
+root.mainloop()       
+
+
+
